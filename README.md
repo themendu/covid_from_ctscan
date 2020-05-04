@@ -14,7 +14,7 @@ For the data collection I have used three public data sources:-
 I belive that the data is accurate and ensured that  no image is repeated by me while modelling.But still the data collected must represent the data from a larger group of people,which may be available later.
 
 
-My custom dataset is found [here](https://drive.google.com/open?id=1oz2m4DQ4UsKggPm76KKFTqH8Lt8JcxuF).
+Link to the custom dataset generated is found [here](https://drive.google.com/open?id=1oz2m4DQ4UsKggPm76KKFTqH8Lt8JcxuF).
 
 
 ![sample image](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/2020.02.17.20024018-p17-61_3.png)
@@ -38,7 +38,7 @@ But to do this transformation,I had to blur the images a little,so that the main
 Modelling is done in PyTorch.Batch size is altered as a large batch size may reduce generalization ability of the model.VGG-19(smaller architecture) didn't come out to be better.Resnet-50 was used to finalize the reuslts.Recall score was monitored at every epoch.Training on a large dataset is used and the best performing model was saved.Now a plethora of options are available.So these previous best parameters were intialized on the resnet-50 model trained  only on perfectly filtered images(232 out of 582) while training only the last two layers and fc layer of resnet-50(people refer it as transfer learning).Resnet-50 has 4 layers(each layer made up of several bottleneck layers-with batch norm included).This fetched me best accuracy.
 
 # Insights generated
-The best model obtained with transfer learning is shown below.It can  successfully detect  20 for every 21 COVID-19 scans given as input.
+The best model obtained with transfer learning is shown below.It has an accuracy score of 97.5%(39correct out of 40 in validation set).
 
 ![best_model](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/final_errors.png)
 
@@ -55,6 +55,11 @@ Not only accuracy,making sure our model does learn the excpected thing is ncessa
 
 Once more data is available,testing the above model is necessary so that it can correctly detect images of various types(age based or may be pneumonia affected lungs etc).I also need to make sure my model did not overfit on the training set.Review of my work is most welcome.
 
-I have made a local host website solely for the COVID-19 prediction and the files are uploaded.
+# Files Uploaded
+I have made a local host website solely for the COVID-19 prediction and the files are uploaded(with app.py as the major file,but the model file cannot be uploaded due to storage issues).
+
+The link to the custom dataset generated in the process is already mentioned above(can be accessed [here](https://drive.google.com/open?id=1oz2m4DQ4UsKggPm76KKFTqH8Lt8JcxuF)).
+
+The commented code file is also uploaded.
 
 
