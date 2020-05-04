@@ -26,7 +26,7 @@ The above sample image has plentiful noise and it varies from one image to other
 While playing with images,blurring the images and then masking them would rather reduce the noise in the images.
 
 
-![image transformation](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/20200504_111834-COLLAGE~2.jpg)
+![image transformation](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/screenshot.png)
 
 
 But to do this transformation,I had to blur the images a little,so that the main white clusters that are needed remain in the image.So now the model has more meaningful information to learn(the portion I like it to capture).So I applied different transformations on both classes.In the testing of the model,both these transformations would be applied(done in app.py,similar to TTA) and more certain results are chosen.This need to be done during my validation as labels are known beforehand.
@@ -47,7 +47,9 @@ This model could detect 20 out of 21 COVID positive images in validation images 
 Adding weight_decay to an SGD optimizer just adds an L2-regularizer like term during your optimizer step.(So that was added to reduce the overfit.) 
 
 ![an example of fit](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/Screenshot%20(39).png)
-Making sure both your losses going down(with small difference leading to a convergence) is important.
+
+
+Making sure both your losses going down(with small difference leading to a convergence) is important.Near the eigth epoch a clear overfit is done since validation loss has gone up.
 
 Not only accuracy,making sure our model does learn the excpected thing is ncessary.I have felt that Pytorch is readily convinient to use compared to keras for a deep learning problem.
 
