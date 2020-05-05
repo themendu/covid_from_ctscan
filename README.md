@@ -1,5 +1,5 @@
 # covid_from_ctscan
-Model which can predict COVID-19 positive case from axial lung CT-scan images.This work is my personal project and I in no way claim my work can be used universally,or state that my work is accurate.
+Model which can predict COVID-19 positive case from axial lung CT-scan images.The model may not detect COVID-19 affected patients who are yet to develop pneumonia symptoms.It can only predict COVID-19 pneumonia cases from normal healthy images. 
 
 
 # Hypothesis
@@ -53,7 +53,7 @@ Making sure both your losses going down(with small difference leading to a conve
 
 Not only accuracy,making sure our model does learn the excpected thing is ncessary.I have felt that Pytorch is readily convinient to use compared to keras for a deep learning problem.
 
-Once more data is available,testing the above model is necessary so that it can correctly detect images of various types(age based or may be pneumonia affected lungs etc).I also need to make sure my model did not overfit on the training set.Review of my work is most welcome.
+Once more data is available,testing the above model is necessary so that it can correctly detect images of various types(age based or may be pneumonia affected lungs etc).I also need to make sure my model did not overfit on the training set.But one thing for sure,this is no replacement to conventional blood testing.Review of my work is most welcome.
 
 # Files Uploaded
 I have made a local host website solely for the COVID-19 prediction and the files are uploaded(with app.py as the major file,but the model file cannot be uploaded due to storage issues).
