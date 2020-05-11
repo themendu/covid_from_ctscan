@@ -49,7 +49,7 @@ Upon Visualization the best model is the model trained on halved images as expec
 # Insights generated
 The best model obtained with transfer learning is shown below.It has an accuracy score of 95%(190 correct out of 200 in validation set).
 
-![best_model](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/final_errors.png)
+![best_model](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/Presentation12.jpg)
 
 This model shown above could detect ALL COVID positive images in validation image set and most importantly it actually learns and generalizes COVID-19 "white spots".The only drawback is that it misdetects non-covid as COVID-19.
 
