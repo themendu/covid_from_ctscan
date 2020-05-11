@@ -36,24 +36,24 @@ Now let us play with images,blurring the images and then masking them would rath
 
 But to do this transformation,I had to blur the images a little,so that the main white clusters that are needed remain in the image.So now the model has more meaningful information to learn(the portion I like it to capture).So different transformations are applied on both classes.In the testing of the model,both these transformations would be applied(done in app.py,similar to TTA) and more certain results are chosen.This need to be done during my validation as labels are known beforehand.
 
-Now a best model on all images was found.Another model trained was initializing the model on all images and trained on the 232 refined images.
+Now a best model on all images was found.Another model trained was initializing the model on all images and trained on the 232 refined images.(let us call it Model-a)
 
 
 ![halved](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/res_pos_original_2020.01.24.919183-p27-133._a.png_6914a6da-db59-4386-a0fb-a19ff96dc0d1.png)
 
 
-Now each image was cut into two halves vertically(this was done so that my model can understand more texture based information than spatial information) and then augmented to 1000 images,500 in each class.Resnet-18 model(trained from scratch with no pretrained initializations)on these 1000 images was the best performing one.Now visualizing the layers of the above both models was done.
+Now each image was cut into two halves vertically(this was done so that my model can understand more texture based information than spatial information) and then augmented to 1000 images,500 in each class.Resnet-18 model(trained from scratch with no pretrained initializations)on these 1000 images was the best performing one.Now visualizing the layers of the above both models was done.(let us call it Model-b).
 
-Upon Visualization the best model is the model trained on halved images as expected though it had lesser accuracy.
+Upon Visualization the best model is the model trained on halved images as expected though it had lesser accuracy(model b).
 
 # Insights generated
-The best model obtained with transfer learning is shown below.It has an accuracy score of 95%(190 correct out of 200 in validation set).
+The best model(Model-b) is shown below.It has an accuracy score of 95%(190 correctly predicted out of 200 in validation set).
 
 ![best_model](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/Presentation12.jpg)
 
-This model shown above could detect ALL COVID positive images in validation image set and most importantly it actually learns and generalizes COVID-19 "white spots".The only drawback is that it misdetects non-covid as COVID-19.
+This model shown above could detect ALL COVID positive images in validation image set and most importantly it actually learns and generalizes COVID-19 "white spots".The only drawback is that it misdetects some non-covid images as COVID-19 affected images.
 
-Adding weight_decay to an SGD optimizer just adds an L2-regularizer like term during your optimizer step.(So that was added to reduce the overfit).Dropout layerwas introduced in the final fully connected layer as another way to tacckle overfit. 
+Adding weight_decay to an SGD optimizer just adds an L2-regularizer like term during your optimizer step.(So that was added to reduce the overfit).Dropout layer was introduced in the final fully connected layer as another way to tacckle overfit.The reason why Model-a is not considered  best is explained below-
 
 ![Wrong fit](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/Presentation1.jpg)
 
@@ -61,7 +61,7 @@ Not only accuracy and recall score,making sure our model does learn the excpecte
 
 So this way my model performs better on the testing dataset as it learnt the thing exactly I wanted to do.Once more data is available,testing the above model is necessary so that it can correctly detect images of various types(age based or may be pneumonia affected lungs etc).
 
-But one thing for sure,this is no replacement to conventional blood testing.Review of my work is most welcome.
+But one thing for sure,this is no replacement to the conventional blood testing for the COVID-19 detection.Review of my work is most welcome.
 
 # Files Uploaded
 I have made a local host website solely for the COVID-19 prediction and the files are uploaded(with app.py as the major file,but the model file cannot be uploaded due to storage issues).
