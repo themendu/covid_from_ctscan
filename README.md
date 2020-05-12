@@ -20,7 +20,11 @@ Link to the custom dataset generated is found [here](https://drive.google.com/op
 ![sample image](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/2020.02.17.20024018-p17-61_3.png)
 
 
-The above sample image has plentiful noise and it varies from one image to other.The images may have taken at different axial cross sections of different people or repeated images taken at different cross sections of the same person.
+The above sample image has plentiful noise and it varies from one image to other.
+
+![sampled image](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/new.jpg)
+
+The images may have taken at different axial cross sections of different people or repeated images taken at different cross sections of the same person.So as per the labelling above the part between the lungs can be considered as noise.
 
 # Approach
 Modelling is done in PyTorch.Batch size is altered as a large batch size may reduce generalization ability of the model.VGG-19(smaller architecture) didn't come out to be better.Directly modelling with all the given images(raw data) the best results obtained are given below(different techniques to remove under or overfitting were used,resnet-50 architecture was better performing)-
