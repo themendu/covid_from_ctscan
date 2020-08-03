@@ -1,17 +1,17 @@
 # covid_from_ctscan
-Model which can predict COVID-19 positive case from axial lung CT-scan images.The model may not detect COVID-19 affected patients who are yet to develop pneumonia symptoms.It can only predict COVID-19 pneumonia cases from normal healthy images. 
+Model which can predict COVID-19 positive case from axial lung CT-scan images.The model may not detect COVID-19 affected patients who are yet to develop pneumonia symptoms.It can only predict COVID-19 pneumonia cases from normal healthy images. This work in any way does not claim any perfect method of detection.
 
 
 # Hypothesis
-I have noticed in the internet how researchers have noticed white patches in the boundary of lung CT scans.This gave me motivation to develop a model which can detect the probablity of a CT scan,affected with COVID-19.The videos([Video-1](https://youtu.be/3ttAFm9wKPg) and [Video-2](https://youtu.be/xUuNr_EFlBM)) attached explains the hypothesis in a better way.
+Researchers have noticed white patches in the boundary of lung CT scans in COVID affected patients.This is the motivation to develop a model which can detect the probablity of a CT scan,affected with COVID-19.The videos([Video-1](https://youtu.be/3ttAFm9wKPg) and [Video-2](https://youtu.be/xUuNr_EFlBM)) attached explains the hypothesis in a better way.
 
 # Data
-For the data collection I have used three public data sources:-
+Three public data sources:-
 1.[Kaggle](https://www.kaggle.com/luisblanche/covidct)
 2.[Github](https://github.com/ieee8023/covid-chestxray-dataset)
 3.[Github](https://github.com/shervinmin/DeepCovid/tree/master/data)
 
-I belive that the data is accurate and ensured that  no image is repeated by me while modelling.But still the data collected must represent the data from a larger group of people,which may be available later.
+No data sample is repeated while modelling.But still the data collected must represent the data from a larger group of people,which may be available later.
 
 
 Link to the custom dataset generated is found [here](https://drive.google.com/open?id=1oz2m4DQ4UsKggPm76KKFTqH8Lt8JcxuF).
@@ -26,19 +26,23 @@ The above sample image has plentiful noise and it varies from one image to other
 
 The images may have taken at different axial cross sections of different people or repeated images taken at different cross sections of the same person.So as per the labelling above the part between the lungs can be considered as noise.
 
+# [Bayesian Neural Network](http://bayesiandeeplearning.org/2018/papers/117.pdf) with variational inference for Out Of Distribution Detection
+Resnet-18 architecture is used as a feature detector and the fully connected layer as bayesian architecture with prior normal distributions to every parameter in the FC layer. So by giving the same input again and again to the model OOD samples can be separated. Every layer is trained.KL divergence loss is also optimized along with cross entropy to approximate the posterior distributions of the FC layer.
+
+
 # Approach
-Modelling is done in PyTorch.Batch size is altered as a large batch size may reduce generalization ability of the model.VGG-19(smaller architecture) didn't come out to be better.Directly modelling with all the given images(raw data) the best results obtained are given below(different techniques to remove under or overfitting were used,resnet-50 architecture was better performing)-
+Batch size is altered as a large batch size may reduce generalization ability of the model.VGG-19(smaller architecture) didn't come out to be better.Directly modelling with all the given images(raw data) the best results obtained are given below(different techniques to remove under or overfitting were used,resnet-50 architecture was better performing)-
 
 ![initial model](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/Screenshot%20(38).png)
 
 
-Now let us play with images,blurring the images and then masking them would rather reduce the noise in the images.
+Blurring the images and then masking them would rather reduce the noise in the images.
 
 
 ![image transformation](https://github.com/themendu/covid_from_ctscan/blob/master/image_references/screenshots/screenshot.png)
 
 
-But to do this transformation,I had to blur the images a little,so that the main white clusters that are needed remain in the image.So now the model has more meaningful information to learn(the portion I like it to capture).So different transformations are applied on both classes.In the testing of the model,both these transformations would be applied(done in app.py,similar to TTA) and more certain results are chosen.This need to be done during my validation as labels are known beforehand.
+Now the model has more meaningful information to learn(the portion I like it to capture).So different transformations are applied on both classes.In the testing of the model,both these transformations would be applied(done in app.py,similar to TTA) and more certain results are chosen.This need to be done during my validation as labels are known beforehand.
 
 Now a best model on all images was found.Another model trained was initializing the model on all images and trained on the 232 refined images.(let us call it Model-a)
 
@@ -63,15 +67,11 @@ Adding weight_decay to an SGD optimizer just adds an L2-regularizer like term du
 
 Not only accuracy and recall score,making sure our model does learn the excpected thing is ncessary.The above image explains the beforesaid line,the model overfits to the noise(Gradients show up near the black portion,which is unnecessary) though it's validation scores are better.
 
-So this way my model performs better on the testing dataset as it learnt the thing exactly I wanted to do.Once more data is available,testing the above model is necessary so that it can correctly detect images of various types(age based or may be pneumonia affected lungs etc).
-
-But one thing for sure,this is no replacement to the conventional blood testing for the COVID-19 detection.Review of my work is most welcome.
-
 # Files Uploaded
-I have made a local host website solely for the COVID-19 prediction and the files are uploaded(with app.py as the major file,but the model file cannot be uploaded due to storage issues).
+A local host website solely for the COVID-19 prediction and the files are uploaded(with app.py as the major file,but the model file cannot be uploaded due to storage issues).
 
 The link to the custom dataset generated in the process is already mentioned above(can be accessed [here](https://drive.google.com/open?id=1oz2m4DQ4UsKggPm76KKFTqH8Lt8JcxuF)).
 
-The three commented code files(two for momdelling and one for layer visualization) are also uploaded.
+The four commented code files(two for momdelling and one for layer visualization and one for bayesian NN) are also uploaded.
 
 
