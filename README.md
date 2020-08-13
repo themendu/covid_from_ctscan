@@ -67,6 +67,9 @@ Adding weight_decay to an SGD optimizer just adds an L2-regularizer like term du
 
 Not only accuracy and recall score,making sure our model does learn the excpected thing is ncessary.The above image explains the beforesaid line,the model overfits to the noise(Gradients show up near the black portion,which is unnecessary) though it's validation scores are better.
 
+# Local Host Deployment
+A local host is created,more details in the local host folder.
+
 # Files Uploaded
 A local host website solely for the COVID-19 prediction and the files are uploaded(with app.py as the major file,but the model file cannot be uploaded due to storage issues).
 
