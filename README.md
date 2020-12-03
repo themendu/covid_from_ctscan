@@ -26,7 +26,7 @@ The above sample image has plentiful noise and it varies from one image to other
 
 The images may have taken at different axial cross sections of different people or repeated images taken at different cross sections of the same person.So as per the labelling above the part between the lungs can be considered as noise.
 
-# [Bayesian Neural Network](http://bayesiandeeplearning.org/2018/papers/117.pdf) for Out Of Distribution Detection
+# Bayesian Neural Network for Out Of Distribution Detection
 Resnet-18 architecture is used as a feature detector and the fully connected layer as bayesian architecture with prior normal distributions to every parameter in the FC layer. So by giving the same input again and again to the model OOD samples can be separated. Every layer is trained.Average KL divergence loss for every layer is also optimized along with cross entropy to impose a sparcity constriant.
 
 
