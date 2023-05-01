@@ -1,6 +1,6 @@
 backports.os==0.1.1
 cloudpickle==1.2.2
-Flask==1.1.1
+Flask==2.3.2
 future==0.18.2
 gevent==1.4.0
 glob2==0.7
